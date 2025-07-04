@@ -10,6 +10,7 @@ collection = db["events"]
 @app.route('/webhook', methods=['POST'])
 def webhook():
     print("✅ GitHub webhook received")
+    return jsonify({"status": "recorded"}), 200
     data = request.json
     event_type = request.headers.get('X-GitHub-Event')
     timestamp = datetime.utcnow().strftime("%d %B %Y - %I:%M %p UTC")
