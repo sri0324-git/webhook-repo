@@ -6,7 +6,9 @@ app = Flask(__name__)
 client = MongoClient("mongodb://localhost:27017/")
 db = client["webhook_db"]
 collection = db["events"]
-
+collection.insert_one({
+    "message": f"✅ Manual test inserted on {datetime.utcnow()}"
+})
 @app.route('/webhook', methods=['POST'])
 def webhook():
     print("✅ GitHub webhook received")
