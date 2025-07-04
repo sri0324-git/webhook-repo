@@ -59,6 +59,9 @@ def events():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('main.html')
+@app.before_request
+def log_request():
+    print(f"➡️ Incoming: {request.method} {request.path}")
 
 if __name__ == '__main__':
     app.run(debug=True)
